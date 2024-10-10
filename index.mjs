@@ -2,6 +2,7 @@ import { getIngredients, getPlayers } from './service.mjs';
 import { Ingredients } from './ingredients.mjs';
 import { Cauldron } from './cauldron.mjs';
 import { PotionBag } from './PotionBag.mjs';
+import { Character } from './Character.mjs';
 
 const execute = async () => {
     try {
@@ -17,37 +18,26 @@ const execute = async () => {
         // const playerIngredients = players.players[0].pouch_yellow
         // const playerIngredients = players.players[0].pouch_aged
         
-        showIngredients(ingredients)
+
+        //SHOW ALL INGREDIENTS FROM API
+        // ingredients.showIngredients()
 
         const cauldron = new Cauldron(ingredients)
         
-
         const potionBag = PotionBag.create(playerIngredients, cauldron)
 
-        console.log('POTION BAG: ', potionBag);
+        // //SHOWS ALL POTIONS INSIDE THE POTION BAG
+        console.log('CREATED POTIONS FROM PLAYER BAG: ');
+        potionBag.showBag()
+        
+        const character = Character.from(players.players[0], potionBag.potions)
+
+        // //SHOWS CHARACTER STATS
+        character.showCharacter()
         
     } catch (error) {
         console.log(error.message);
     }
-}
-
-function showIngredients(ingredients) {
-    console.log('LIST OF ALL INGREDIENTS WITH THEIR EFFECTS');
-    console.log('--------------------------------------------');
-    console.log();
-    ingredients.ingredients.forEach(ingredient => {
-        console.log(`Ingredient: ${ingredient.name}, Effects: ${ingredient.effects.map(e => e.name).join(', ')}`);
-    });
-}
-
-function showPotion(potion) {
-    console.log()
-    console.log(potion.name);
-    console.log(`Value:  ${potion.value}`)
-    console.log(`Weight: ${potion.weight}`)
-    console.log(`Time:   ${potion.time}`)
-    console.log()
-    console.log(`-------------------------------`)
 }
 
 execute();

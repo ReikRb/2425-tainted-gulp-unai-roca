@@ -18,6 +18,16 @@ export class Potion {
     static sanity(){
         return new PotionOfSanity
     }
+
+    showPotion() {
+        console.log()
+        console.log(this.name);
+        console.log(`Value:  ${this.value}`)
+        console.log(`Weight: ${this.weight}`)
+        console.log(`Time:   ${this.time}`)
+        console.log()
+        console.log(`-------------------------------`)
+    }
 }
 
 

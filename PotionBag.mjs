@@ -12,7 +12,7 @@ export class PotionBag {
                 for (let j = i; j < ingredients.length; j++) {
                     const ingredient2 = ingredients[j];
                     let potion;
-                    
+
                     if (ingredient2 != ingredient1) potion = cauldron.createPotion(ingredient1, ingredient2)
                     if (potion != undefined) potions.push(potion)
                 }
@@ -21,5 +21,11 @@ export class PotionBag {
         } catch (error) {
             console.log(`Error creating The Potion Bag: `, error)
         }
+    }
+
+    showBag(){
+        this.potions.forEach(potion => {
+        potion.showPotion()
+        });
     }
 }

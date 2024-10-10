@@ -15,4 +15,13 @@ export class Ingredients {
       
         return ingredient
     }
+
+    showIngredients() {
+        console.log('LIST OF ALL INGREDIENTS WITH THEIR EFFECTS');
+        console.log('--------------------------------------------');
+        console.log();
+        this.ingredients.forEach(ingredient => {
+            ingredient.showIngredient()
+        });
+    }
 }

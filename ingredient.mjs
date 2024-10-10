@@ -23,4 +23,10 @@ export class Ingredient {
     hasName(name) {
         return this.name === name;
     }
+
+    showIngredient(){
+        console.log(`Ingredient: ${this.name}, Effects: ${this.effects.map(e => e.name).join(', ')}`);
+
+    }
+
 }
