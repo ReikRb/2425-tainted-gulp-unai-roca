@@ -1,12 +1,20 @@
-import { getData } from './service.mjs';
+import { getIngredients, getPlayers } from './service.mjs';
 import { Ingredients } from './ingredients.mjs';
 import { Cauldron } from './cauldron.mjs';
+import { PotionBag } from './PotionBag.mjs';
 
 const execute = async () => {
     try {
-        const data = await getData();
+        const data = await getIngredients();
+        const players = await getPlayers()
         const ingredients = Ingredients.load(data);
 
+        //USE ANY POUCH YOU WANT BY COMMENTING THE OTHERS
+        const playerIngredients = data.players.pouch_red
+        // const playerIngredients = data.players.pouch_green
+        // const playerIngredients = data.players.pouch_yellow
+        // const playerIngredients = data.players.pouch_aged
+        
         showIngredients(ingredients)
 
         const cauldron = new Cauldron(ingredients)
@@ -23,6 +31,8 @@ const execute = async () => {
         const potion4 = cauldron.createPotion('Nightshade', 'Ectoplasm')
         showPotion(potion4)
 
+        
+        const potionBag = PotionBag.create(ingredients, cauldron)
     } catch (error) {
         console.log(error.message);
     }

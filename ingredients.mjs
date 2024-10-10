@@ -5,7 +5,7 @@ export class Ingredients {
         this.ingredients = ingredients; 
     }
 
-    static load(data) {
+    static load(data) {     
         return new Ingredients(data.ingredients.map(Ingredient.from));
     }
 
