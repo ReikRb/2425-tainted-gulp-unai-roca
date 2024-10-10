@@ -12,10 +12,10 @@ const execute = async () => {
         
         const ingredients = Ingredients.load(data);
 
-        //USE ANY POUCH YOU WANT BY COMMENTING THE OTHERS
-        const playerIngredients = players.players[0].pouch_red
+        // USE ANY POUCH YOU WANT BY COMMENTING THE OTHERS
+        // const playerIngredients = players.players[0].pouch_red
         // const playerIngredients = players.players[0].pouch_green
-        // const playerIngredients = players.players[0].pouch_yellow
+         const playerIngredients = players.players[0].pouch_yellow
         // const playerIngredients = players.players[0].pouch_aged
         
 
@@ -35,6 +35,7 @@ const execute = async () => {
         // //SHOWS CHARACTER STATS
         character.showCharacter()
         
+        character.drinkEmAll()
     } catch (error) {
         console.log(error.message);
     }
