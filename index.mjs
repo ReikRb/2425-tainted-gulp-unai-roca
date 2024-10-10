@@ -5,34 +5,27 @@ import { PotionBag } from './PotionBag.mjs';
 
 const execute = async () => {
     try {
+        //Retrieve Data from APIs
         const data = await getIngredients();
         const players = await getPlayers()
+        
         const ingredients = Ingredients.load(data);
 
         //USE ANY POUCH YOU WANT BY COMMENTING THE OTHERS
-        const playerIngredients = data.players.pouch_red
-        // const playerIngredients = data.players.pouch_green
-        // const playerIngredients = data.players.pouch_yellow
-        // const playerIngredients = data.players.pouch_aged
+        const playerIngredients = players.players[0].pouch_red
+        // const playerIngredients = players.players[0].pouch_green
+        // const playerIngredients = players.players[0].pouch_yellow
+        // const playerIngredients = players.players[0].pouch_aged
         
         showIngredients(ingredients)
 
         const cauldron = new Cauldron(ingredients)
-
-        const potion1 = cauldron.createPotion('Bear Claws', 'Bee')
-        showPotion(potion1)
-
-        const potion2 = cauldron.createPotion("Chicken's Egg", 'Chaurus Eggs')
-        showPotion(potion2)
-
-        const potion3 = cauldron.createPotion('Chaurus Eggs', 'Bleeding Crown')
-        showPotion(potion3)
-
-        const potion4 = cauldron.createPotion('Nightshade', 'Ectoplasm')
-        showPotion(potion4)
-
         
-        const potionBag = PotionBag.create(ingredients, cauldron)
+
+        const potionBag = PotionBag.create(playerIngredients, cauldron)
+
+        console.log('POTION BAG: ', potionBag);
+        
     } catch (error) {
         console.log(error.message);
     }

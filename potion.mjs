@@ -8,7 +8,7 @@ export class Potion {
 
     static with(effect, weight, value) {
         const type = effect.type === 'beneficial' ? 'Potion' : 'Poison';
-        return new Potion(`${type} of ${effect.name}`, value, weight, 10);
+        return new Potion(`${type} of ${effect.name}`, value, parseFloat(weight.toFixed(2)), 10);
     }
 
     static failed(){

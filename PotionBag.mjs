@@ -4,15 +4,22 @@ export class PotionBag {
     }
 
     static create(ingredients, cauldron) {
-        
-        for (let i = 0; i < ingredients.length; i++) {
-            const ingredient1 = ingredients[i];
-            const ingredient2 = ingredients[i+1];
-            
-            let potion;
-            if ((i + 1) < ingredients.length) potion = cauldron.createPotion(ingredient1, ingredient2)
-        
-            this.potions.push(potion)
+        try {
+            const potions = []
+            for (let i = 0; i < ingredients.length; i++) {
+                const ingredient1 = ingredients[i];
+
+                for (let j = i; j < ingredients.length; j++) {
+                    const ingredient2 = ingredients[j];
+                    let potion;
+                    
+                    if (ingredient2 != ingredient1) potion = cauldron.createPotion(ingredient1, ingredient2)
+                    if (potion != undefined) potions.push(potion)
+                }
+            }
+            return new PotionBag(potions)
+        } catch (error) {
+            console.log(`Error creating The Potion Bag: `, error)
         }
     }
 }
